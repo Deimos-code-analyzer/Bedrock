@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Change to workdir
+      - name: Docker image build
         run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/code-analyzer-bedrock:latest .
 
       - name: Log in to Docker Hub
