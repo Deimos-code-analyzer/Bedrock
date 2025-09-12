@@ -20,6 +20,7 @@ jobs:
           java-version: 17
 
       - name: Run Unit Tests
+        working-directory: ./ayush
         run: ./mvnw test
 
       - name: Upload JUnit Reports
@@ -29,6 +30,7 @@ jobs:
           path: target/surefire-reports/
 
       - name: Run SpotBugs
+        working-directory: ./ayush  
         run: ./mvnw com.github.spotbugs:spotbugs-maven-plugin:4.7.3.4:spotbugs
 
       - name: Upload SpotBugs Report
@@ -38,6 +40,7 @@ jobs:
           path: target/spotbugsXml.xml
 
       - name: Run OWASP Dependency Check
+        working-directory: ./ayush
         run: ./mvnw org.owasp:dependency-check-maven:8.4.0:check
 
       - name: Upload Dependency Check Report
