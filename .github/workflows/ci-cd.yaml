@@ -27,7 +27,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: junit-reports
-          path: target/surefire-reports/
+          path: ayush/target/surefire-reports/
 
       - name: Run SpotBugs
         working-directory: ./ayush  
@@ -37,17 +37,24 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: spotbugs-report
-          path: target/spotbugsXml.xml
+          path: ayush/target/spotbugsXml.xml
+          if-no-files-found: warn
 
       - name: Run OWASP Dependency Check
-        working-directory: ./ayush
-        run: ./mvnw org.owasp:dependency-check-maven:8.4.0:check
+        uses: dependency-check/Dependency-Check_Action@main
+        with:
+          project: "ayush"
+          path: "./ayush"
+          format: "ALL"
+          out: "ayush/target"
+          args: >
+            --nvdApiKeyDisabled
 
       - name: Upload Dependency Check Report
         uses: actions/upload-artifact@v4
         with:
           name: dependency-check-report
-          path: target/dependency-check-report.html
+          path: ayush/target
 
       - name: Set up Docker image tag
         id: vars
