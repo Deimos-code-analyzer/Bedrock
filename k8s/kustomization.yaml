@@ -5,3 +5,4 @@ resources:
   - bedrock-deploy.yaml
   - bedrock-hpa.yaml
   - bedrock-service.yaml
+  - bedrock-netpol.yaml
