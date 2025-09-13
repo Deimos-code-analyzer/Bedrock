@@ -13,7 +13,7 @@ spec:
   - from:
     - podSelector:
         matchLabels:
-          app: frontend
+          app: notes-frontend
     ports:
     - protocol: TCP
       port: 8080
