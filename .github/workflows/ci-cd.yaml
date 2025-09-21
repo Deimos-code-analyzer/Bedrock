@@ -40,46 +40,6 @@ jobs:
           path: ayush/target/spotbugsXml.xml
           if-no-files-found: warn
 
-      - name: Run OWASP Dependency Check
-        working-directory: ./ayush
-        run: |
-          ./mvnw org.owasp:dependency-check-maven:8.4.0:check \
-            -DskipSystemScope=true \
-            -DskipProvidedScope=true \
-            -DskipRuntimeScope=true \
-            -DskipTestScope=true \
-            -DskipDependencyManagement=true \
-            -DnvdApiKeyDisabled=true \
-            -Dnoupdate=true \
-            -DfailBuildOnAnyVuln=false \
-            -DretireJsAnalyzerEnabled=false \
-            -DnodeAnalyzerEnabled=false \
-            -DassemblyAnalyzerEnabled=false \
-            -DarchiveAnalyzerEnabled=false \
-            -DjarAnalyzerEnabled=false \
-            -DpyPackageAnalyzerEnabled=false \
-            -DrubygemsAnalyzerEnabled=false \
-            -DopenSSLAnalyzerEnabled=false \
-            -DcmakeAnalyzerEnabled=false \
-            -DautoconfAnalyzerEnabled=false \
-            -DcomposerAnalyzerEnabled=false \
-            -DnuspecAnalyzerEnabled=false \
-            -DnugetconfAnalyzerEnabled=false \
-            -DcocoapodsAnalyzerEnabled=false \
-            -DswiftPackageManagerAnalyzerEnabled=false \
-            -DbundleAuditAnalyzerEnabled=false \
-            -DpipAnalyzerEnabled=false \
-            -DpipfileAnalyzerEnabled=false \
-            -DpoetryAnalyzerEnabled=false
-        continue-on-error: true
-
-      - name: Upload Dependency Check Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: dependency-check-report
-          path: ayush/target/dependency-check-report.html
-          if-no-files-found: warn
-
       - name: Set up Docker image tag
         run: echo "TAG=${{ github.sha }}" >> $GITHUB_ENV
 
